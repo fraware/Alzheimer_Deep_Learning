@@ -13,8 +13,6 @@ from evaluation import evaluate_model
 
 def main():
     # 1. (Optional) Run EDA
-    #    This might produce plots etc.
-    #    You can skip or do it:
     print("Running EDA...")
     df_eda = run_eda(data_path="../data/oasis_longitudinal.csv")
 
