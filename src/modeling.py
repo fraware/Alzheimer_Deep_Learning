@@ -49,7 +49,6 @@ def train_svm(X_trainval, Y_trainval, X_test, Y_test):
     return final_model, best_params, best_score, test_score
 
 
-# Similarly for DecisionTree, RandomForest, AdaBoost
 def train_decision_tree(X_trainval, Y_trainval, X_test, Y_test):
     best_score = 0
     best_depth = None
