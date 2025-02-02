@@ -5,7 +5,6 @@ import matplotlib.pyplot as plt
 
 sns.set()
 
-
 def run_eda(data_path="../data/oasis_longitudinal.csv"):
     """
     Run all EDA steps.
@@ -13,22 +12,12 @@ def run_eda(data_path="../data/oasis_longitudinal.csv"):
     """
     df = pd.read_csv(data_path)
 
-    # Original EDA steps:
-    # 1) For example, filter df['Visit'] == 1
-    # 2) Convert M/F to numeric
-    # 3) Convert Group to numeric
-    # 4) Etc...
-
     df = df.loc[df["Visit"] == 1]
     df = df.reset_index(drop=True)
     df["M/F"] = df["M/F"].replace(["F", "M"], [0, 1])
     df["Group"] = df["Group"].replace(["Converted"], ["Demented"])
     df["Group"] = df["Group"].replace(["Demented", "Nondemented"], [1, 0])
     df = df.drop(["MRI ID", "Visit", "Hand"], axis=1)
-
-    # Example EDA plots
-    # Plot: bar chart for M/F vs Demented
-    # etc. Keep your code, e.g.:
 
     def bar_chart(feature):
         Demented = df[df["Group"] == 1][feature].value_counts()
@@ -57,7 +46,7 @@ def run_eda(data_path="../data/oasis_longitudinal.csv"):
     # MMSE : Mini Mental State Examination
     # Nondemented = 0, Demented =1
     # Nondemented has higher test result ranging from 25 to 30.
-    # Min 17 ,MAX 30
+    # Min 17, MAX 30
     facet = sns.FacetGrid(df, hue="Group", aspect=3)
     facet.map(sns.kdeplot, "MMSE", shade=True)
     facet.set(xlim=(0, df["MMSE"].max()))
@@ -103,7 +92,5 @@ def run_eda(data_path="../data/oasis_longitudinal.csv"):
 
     return df
 
-
-# If you want to run EDA from this file directly:
 if __name__ == "__main__":
     run_eda()
